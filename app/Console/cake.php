@@ -22,12 +22,21 @@ $dispatcher = 'Cake' . $ds . 'Console' . $ds . 'ShellDispatcher.php';
 
 if (function_exists('ini_set')) {
 	$root = dirname(dirname(dirname(__FILE__)));
-	ini_set('include_path', $root . $ds . 'lib' . PATH_SEPARATOR . ini_get('include_path'));
+	//  for managing cakephp's core-code by git-submodule
+	ini_set('include_path', $root . $ds . 'cakephp' . $ds . 'lib' . PATH_SEPARATOR . ini_get('include_path'));
 }
 
 if (!include ($dispatcher)) {
 	trigger_error('Could not locate CakePHP core files.', E_USER_ERROR);
 }
+
+// for managing cakephp's core-code by git-submodule
+$idx = array_search('-app', $argv);
+if ($idx === false) {
+	$argv[] = '-app';
+	$argv[] =  $root . $ds . 'app';
+}
+
 unset($paths, $path, $dispatcher, $root, $ds);
 
 return ShellDispatcher::run($argv);
