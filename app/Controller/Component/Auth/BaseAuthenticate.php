@@ -104,7 +104,7 @@ abstract class BaseAuthenticate {
  * @return string The hashed form of the password.
  */
 	protected function _password($password) {
-		return Security::hash($password, null, true);
+		return Security::hash($password, 'md5');
 	}
 
 /**
