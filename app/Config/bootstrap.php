@@ -180,4 +180,5 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 CakePlugin::loadAll();
+Configure::write('App.defaultEmail', 'register@suki-job.jp');
 Configure::write('Users.table','skill_users');
